@@ -1,6 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      var name = "Samuel Rowe";
+      var id_oia = `1742157`;
+      var user_id_oia = `693245`;
+      var app_oia = `url`;
+      var title_oia = "Blanko";
+      var paid_clicks_oia = `3`;
+      var store_clicks_url =
+        window.location.origin + `/api/v1/redirect/store-clicks`;
+      var browser = `curl`;
+      browser = browser?.toLowerCase();
+      browser = browser.includes("instagram") ? "instagram" : browser;
+
+      function isAndroidOS() {
+        // Get the user agent string
+        var userAgent = navigator.userAgent.toLowerCase();
+
+        // Check if the user agent contains the word "android"
+        return userAgent.indexOf("android") > -1;
+      }
+
+      var os = isAndroidOS() ? "android" : "other";
+      var appintent = ``;
+      var link = `https://ifeelblanko.com/,https://ifeelblanko.com/`;
+      var fb_pixel_id = ``;
+      var redirect_hit = false;
+      var referer = "";
+      var headers =
+        "eyJjb25uZWN0aW9uIjoidXBncmFkZSIsImhvc3QiOiJvcGVuaW5hcHAuY28iLCJjZi1jb25uZWN0aW5nLWlwIjoiMTAzLjIxNC42My4yMzAiLCJjZi1pcGNvdW50cnkiOiJJTiIsImFjY2VwdC1lbmNvZGluZyI6Imd6aXAiLCJjZi1yYXkiOiI3ZWQzZWJhM2VmZGE4NTg0LUJPTSIsIngtZm9yd2FyZGVkLXByb3RvIjoiaHR0cHMiLCJjZi12aXNpdG9yIjoie1wic2NoZW1lXCI6XCJodHRwc1wifSIsInVzZXItYWdlbnQiOiJjdXJsLzcuODEuMCIsImFjY2VwdCI6IiovKiIsImNkbi1sb29wIjoiY2xvdWRmbGFyZSIsIngtY2xvdWQtdHJhY2UtY29udGV4dCI6IjM5MGFjZWZmODYxNDQzMGIxNzFkNGJlYTE4NDQzYjVjLzE0NDQ3MTE3OTM1Njc3NTU1MTIwIiwidmlhIjoiMS4xIGdvb2dsZSIsIngtZm9yd2FyZGVkLWZvciI6IjEwMy4yMTQuNjMuMjMwLCAxNzIuNzAuMjE4LjEwMCwgMzQuMTYwLjIwMC43MiJ9";
+      var user_agent = "curl/7.81.0";
+      var cid = "";
+      var response_time = 0;
+
+      var api_res = {};
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = false;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-5Z84CGF");
+    </script>
+
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,8 +71,290 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        /* background-color: #f2f3fa; */
+        /* padding: 5rem 2rem; */
+        height: 100vh;
+        overflow: hidden;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .ui_container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+      }
+
+      .content {
+        max-width: 34rem;
+        margin: 0 auto;
+      }
+
+      .container {
+        margin-top: 15vh;
+      }
+
+      .heading-two {
+        font-size: 3.2rem;
+        line-height: 4.8rem;
+        color: #212529;
+        display: block;
+      }
+
+      .heading-one {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 6.4rem;
+        line-height: 7.6rem;
+        letter-spacing: -2px;
+        color: #5d3de1;
+        display: block;
+        margin-bottom: 4rem;
+        position: relative;
+      }
+
+      .stroke {
+        position: absolute;
+      }
+
+      .button {
+        all: unset;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 1.6rem 2.4rem;
+        width: 28rem;
+        background: #5d3de1;
+        border-radius: 8px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: 2.4rem;
+        color: #ffffff;
+      }
+
+      .container_lottie {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 17rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .footer div {
+        font-weight: 500;
+        font-size: 2rem;
+        line-height: 2.8rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .footer div p {
+        font-weight: 500;
+      }
+
+      .footer div span {
+        font-weight: 700;
+      }
+
+      .logo {
+        height: 3rem;
+      }
+
+      .margin_top {
+        margin-top: 10rem;
+      }
+    </style>
+
+    <script src="https://unpkg.com/@dotlottie/player-component@1.0.0/dist/dotlottie-player.js"></script>
+    <script>
+      function displayOldUi() {
+        setTimeout(() => {
+          document
+            .getElementById("show_ui_one")
+            .setAttribute("style", "display:block");
+          document
+            .getElementById("show_ui_two")
+            .setAttribute("style", "display:none");
+        }, 1000);
+        // element_two.style.display = ''
+        // element_one.style.display = 'none'
+      }
+
+      // render_new_ui) {
+      //   element_two.style.display = 'block'
+      //   element_one.style.display = 'none'
+      // } else {
+      //   element_two.style.display = 'none'
+      //   element_one.style.display = 'block'
+      // }
+    </script>
   </head>
-  <body>
+  <body class="body" id="body">
+    <div id="container" class="ui_container">
+      <div
+        id="show_ui_one"
+        class="content margin_top"
+        onClick="redirectOpeninApp()"
+        style="display: none"
+      >
+        <img src="/logo.svg" alt="logo" />
+        <div class="container">
+          <span class="heading-two">
+            Create <br />
+            Links that
+          </span>
+          <span class="heading-one">
+            Grow<br />
+            Followers
+            <img src="/stroke.svg" alt="stroke" class="stroke" />
+          </span>
+          <button class="button">Try Now!</button>
+        </div>
+      </div>
+      <div id="show_ui_two" class="container_lottie">
+        <dotlottie-player
+          style="height: calc(100vh - 15rem); width: 320px"
+          autoplay
+          loop
+          mode="normal"
+          src="/animation.lottie"
+        >
+        </dotlottie-player>
+        <footer class="footer">
+          <img src="/logo.svg" alt="logo" class="logo" />
+        </footer>
+      </div>
+    </div>
+    <script>
+      function redirectOpeninApp() {
+        if (os?.toLowerCase() === "android") {
+          displayOldUi();
+          window.location.replace(
+            `intent://openinapp.com?utm_source=banner_page&utm_medium=693245&utm_campaign=new&utm_content=${
+              title_oia.replaceAll("#", "") || ""
+            }/#Intent;scheme=https;S.browser_fallback_url=https://openinapp.com?utm_source=banner_page&utm_medium=693245&utm_campaign=new&utm_content=${
+              title_oia.replaceAll("#", "") || ""
+            };end;`
+          );
+        }
+        // else if (os.toLowerCase() === 'ios') {
+        //   window.location.replace(
+        //     `https://openinapp.com?utm_source=banner_page&utm_medium=693245&utm_campaign=new&utm_content=${title_oia || ''
+        //     }`
+        //   );
+        // }
+        else {
+          displayOldUi();
+          window.location.replace(
+            `https://openinapp.com?utm_source=banner_page&utm_medium=693245&utm_campaign=new&utm_content=${
+              title_oia || ""
+            }`
+          );
+        }
+        // setTimeout(function () {
+        //   window.location = `https://openinapp.com?utm_source=banner_page&utm_medium=693245&utm_campaign=new&utm_content=${title_oia || ''
+        //     }`;
+        // }, 100);
+      }
+      var interval = "";
+    </script>
+    <script>
+      if (
+        os === "ios" &&
+        app_oia?.toLowerCase() !== "youtube" &&
+        app_oia?.toLowerCase() !== "facebook" &&
+        app_oia?.toLowerCase() !== "flipkart" &&
+        app_oia?.toLowerCase() !== "amazon" &&
+        app_oia?.toLowerCase() !== "linkedin" &&
+        app_oia?.toLowerCase() !== "twitter" &&
+        app_oia?.toLowerCase() !== "telegram" &&
+        app_oia?.toLowerCase() !== "zomato" &&
+        app_oia?.toLowerCase() !== "swiggy" &&
+        app_oia?.toLowerCase() !== "instagram"
+      ) {
+        document.getElementById("body").setAttribute("style", "display:none");
+      }
+      // setTimeout(() => {
+      //   if(!redirect_hit) {
+      //     var _Link = 'https://ifeelblanko.com/'.replace(/&amp;/g, '&').replace(/&#039;/g, "'");
+      //     var _noapplink = 'https://ifeelblanko.com/'.replace(/&amp;/g, '&').replace(/&#039;/g, "'");
+      //     var _withouthttpslink = _noapplink.split('//');
+      //     var _start = Date.now();
+      //     function noappfound() {
+      //       var _now = Date.now();
+      //       if (_now - _start > 500) {
+      //         if(os?.toLowerCase() === "android" && browser === "instagram") {
+      //           displayOldUi()
+      //         }
+      //         window.location.replace(_noapplink);
+      //       }
+      //     }
+      //     if(os?.toLowerCase() === "android" && browser === "instagram") {
+      //       displayOldUi()
+      //     }
+      //     window.location.replace(_Link);
+      //     if (os === 'ios') {
+      //       setTimeout(noappfound, 501);
+      //     }
+      //   }
+      // }, 5000)
+      // document.addEventListener('android', function (e) {
+      redirect_hit = true;
+      var Link = "https://ifeelblanko.com/"
+        .replace(/&amp;/g, "&")
+        .replace(/&#039;/g, "'");
+      var noapplink = "https://ifeelblanko.com/"
+        .replace(/&amp;/g, "&")
+        .replace(/&#039;/g, "'");
+      var withouthttpslink = noapplink.split("//");
+      var start = Date.now();
+      function noappfound() {
+        var now = Date.now();
+        if (now - start > 500) {
+          if (os?.toLowerCase() === "android" && browser === "instagram") {
+            displayOldUi();
+          }
+          window.location.replace(noapplink);
+        }
+      }
+      if (os?.toLowerCase() === "android" && browser === "instagram") {
+        displayOldUi();
+      }
+      window.location.replace(Link);
+      if (os === "ios") {
+        setTimeout(noappfound, 501);
+      }
+      // });
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
