@@ -39,24 +39,19 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <a href="https://ifeelblanko.com" id="external-link">Open in External Browser</a>
     <script>
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      var str = navigator.userAgent;
-      var instagram = str.indexOf("Instagram");
-      var facebook = str.indexOf("FB");
+      const externalLink = document.getElementById("external-link");
 
-      if (/android/i.test(userAgent) && (instagram != -1 || facebook != -1)) {
-        window.location.href = "https://ifeelblanko.com";
+      externalLink.addEventListener("click", function (event) {
+        event.preventDefault();
 
-        // document.write(
-        //   '<a target="_blank" href="https://ifeelblanko.com" download id="open-browser-url">Please wait. Proceed to Chrome</a>'
-        // );
-        // window.stop();
-        // let input = document.getElementById("open-browser-url");
-        // if (input) {
-        //   input.click();
-        // }
-      }
+        // Change the URL to the one you want to open externally
+        const urlToOpen = this.href;
+
+        // Open the URL in a new window using the "window.open" method
+        window.open(urlToOpen, "_blank");
+      });
     </script>
   </body>
 </html>
