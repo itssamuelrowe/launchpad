@@ -39,19 +39,52 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <a href="https://ifeelblanko.com" id="external-link">Open in External Browser</a>
     <script>
-      const externalLink = document.getElementById("external-link");
+      var ua = navigator.userAgent.toLowerCase();
+      var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 
-      externalLink.addEventListener("click", function (event) {
-        event.preventDefault();
+      var os = isAndroid ? "android" : "other";
 
-        // Change the URL to the one you want to open externally
-        const urlToOpen = this.href;
-
-        // Open the URL in a new window using the "window.open" method
-        window.open(urlToOpen, "_blank");
-      });
+      if (
+        os === "ios" &&
+        app_oia?.toLowerCase() !== "youtube" &&
+        app_oia?.toLowerCase() !== "facebook" &&
+        app_oia?.toLowerCase() !== "flipkart" &&
+        app_oia?.toLowerCase() !== "amazon" &&
+        app_oia?.toLowerCase() !== "linkedin" &&
+        app_oia?.toLowerCase() !== "twitter" &&
+        app_oia?.toLowerCase() !== "telegram" &&
+        app_oia?.toLowerCase() !== "zomato" &&
+        app_oia?.toLowerCase() !== "swiggy" &&
+        app_oia?.toLowerCase() !== "instagram"
+      ) {
+        document.getElementById("body").setAttribute("style", "display:none");
+      }
+      redirect_hit = true;
+      var Link = "https://ifeelblanko.com/"
+        .replace(/&amp;/g, "&")
+        .replace(/&#039;/g, "'");
+      var noapplink = "https://ifeelblanko.com/"
+        .replace(/&amp;/g, "&")
+        .replace(/&#039;/g, "'");
+      var withouthttpslink = noapplink.split("//");
+      var start = Date.now();
+      function noappfound() {
+        var now = Date.now();
+        if (now - start > 500) {
+          if (os?.toLowerCase() === "android" && browser === "instagram") {
+            displayOldUi();
+          }
+          window.location.replace(noapplink);
+        }
+      }
+      if (os?.toLowerCase() === "android" && browser === "instagram") {
+        displayOldUi();
+      }
+      window.location.replace(Link);
+      if (os === "ios") {
+        setTimeout(noappfound, 501);
+      }
     </script>
   </body>
 </html>
